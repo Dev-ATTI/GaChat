@@ -6,10 +6,10 @@ import {
 
 import BottomNavigation, {Tab} from 'react-native-material-bottom-navigation'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import MomentScreen from './MomentScreen';
-import ProfileScreen from './ProfileScreen.js';
-import ChatScreen from './ChatScreen.js';
-import HomeScreen from './HomeScreen.js';
+import MomentScreen from '../MomentScreen/MomentScreen';
+import ProfileScreen from '../ProfileScreen/ProfileScreen.js';
+import ChatScreen from '../ChatScreen/ChatScreen.js';
+import HomeScreen from '../HomeScreen/HomeScreen.js';
 
 
 export default class MainScreen extends Component {

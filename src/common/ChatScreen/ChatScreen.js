@@ -4,9 +4,9 @@ import {
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducers from './reducers';
-import LibraryList from './common/LibraryList';
-import Router from './common/Router';
+import reducers from '../../reducers/index';
+import LibraryList from './LibraryList';
+import Router from './Router';
 
 
 export default class ChatScreen extends Component {

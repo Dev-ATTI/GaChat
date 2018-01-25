@@ -13,7 +13,7 @@ import {
 
 import md5 from "react-native-md5";
 import { Font } from 'expo';
-import LibraryList from './common/LibraryList'
+import LibraryList from '../ChatScreen/LibraryList'
 
 export default class LoginScreen extends Component {
     userName = '';
@@ -29,7 +29,7 @@ export default class LoginScreen extends Component {
     // async load the font
     async componentDidMount() {
         await Font.loadAsync({
-            'gloria-halleujah': require('../assets/fonts/GloriaHallelujah.ttf'),
+            'gloria-halleujah': require('../../../assets/fonts/GloriaHallelujah.ttf'),
         });
 
         this.setState({ fontLoaded: true });
@@ -114,7 +114,7 @@ export default class LoginScreen extends Component {
                 <View
                     style={styles.inputBox}>
                     <Image
-                        source={require('../assets/icons/username.png')}
+                        source={require('../../../assets/icons/username.png')}
                         style={styles.img}/>
                     <TextInput
                         style={inputStyles}
@@ -128,7 +128,7 @@ export default class LoginScreen extends Component {
                 <View
                     style={styles.inputBox}>
                     <Image
-                        source={require('../assets/icons/pwd.png')}
+                        source={require('../../../assets/icons/pwd.png')}
                         style={styles.img}/>
                     <TextInput
                         style={inputStyles}

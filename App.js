@@ -9,9 +9,9 @@ import {
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import {StackNavigator} from 'react-navigation';
-import LoginScreen from './src/LoginScreen.js';
-import MainScreen from './src/MainScreen.js';
-import Router from './src/common/Router';
+import LoginScreen from './src/common/LoginScreen/LoginScreen.js';
+import MainScreen from './src/common/MainScreen/MainScreen.js';
+import Router from './src/common/ChatScreen/Router';
 import reducers from './src/reducers';
 const AppContent = StackNavigator({
     LoginScreen: {

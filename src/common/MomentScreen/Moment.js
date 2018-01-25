@@ -19,7 +19,7 @@ export default class Moment extends Component {
                                 right: 5
                             }}
                             resizeMode={'contain'}
-                            source={require('../assets/images/dog.jpg')}
+                            source={require('../../../assets/images/dog.jpg')}
                         />
                     </Col>
                     <Col>
