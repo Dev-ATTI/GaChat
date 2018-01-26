@@ -17,32 +17,32 @@ export default class MomentScreen extends Component {
         super(props);
 
 
-        let _numberOfData = 300;
-        let _data;
+        let numberOfData = 300;
+        let data;
 
-        _data = this._generateData(_numberOfData);
+        data = this.generateData(numberOfData);
 
         this.state = {
-            numberOfData: _numberOfData,
-            data : _data,
+            numberOfData: numberOfData,
+            data : data,
         }
     }
 
 
-    _generateData = (_numberOfData) =>{
-        let _data = Array(_numberOfData);
-        for(let i = 0; i < _numberOfData; i++){
-            let _dataOfRow = {};
-            _dataOfRow.key = i;
-            _dataOfRow.userName = 'user' + i
+    generateData = (numberOfData) =>{
+        let data = Array(numberOfData);
+        for(let i = 0; i < numberOfData; i++){
+            let dataOfRow = {};
+            dataOfRow.key = i;
+            dataOfRow.userName = 'user' + i
             if(i % 13 === 0){
-                _dataOfRow.content = '0123456789';
+                dataOfRow.content = '0123456789';
             }else{
-                _dataOfRow.content = _data[i - 1].content + '0123456789';
+                dataOfRow.content = data[i - 1].content + '0123456789';
             }
-            _data[i] = _dataOfRow;
+            data[i] = dataOfRow;
         }
-        return _data;
+        return data;
 
     };
 
@@ -61,8 +61,8 @@ class MomentList extends Component
     constructor(props)
     {
         super(props);
-        this._getItem = this._getItem.bind(this);
-        this._renderRow = this._renderRow.bind(this);
+        this.getItem = this.getItem.bind(this);
+        this.renderRow = this.renderRow.bind(this);
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext)
@@ -71,11 +71,11 @@ class MomentList extends Component
     }
 
 
-    _getItem(data, index) {
+    getItem(data, index) {
         return data[index];
     }
 
-    _renderRow(row)
+    renderRow(row)
     {
         return(
             <Moment row={row}/>
@@ -89,8 +89,8 @@ class MomentList extends Component
             <VirtualizedList
                 keyExtractor={(item) => item.key}
                 data={_values(this.props.data)}
-                renderItem={this._renderRow}
-                getItem={(data,index) => this._getItem(data,index)}
+                renderItem={this.renderRow}
+                getItem={(data,index) => this.getItem(data,index)}
                 getItemCount={(data) => data ? _size(data) : 0}
                 contentContainerStyle={{ flexGrow: 1, overflow: 'hidden' }}
                 showsVerticalScrollIndicator={false}
