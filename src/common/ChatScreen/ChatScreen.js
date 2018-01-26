@@ -17,6 +17,7 @@ export default class ChatScreen extends Component {
         <View style={{ flex: 1 }}>
         <Router />
         </View>
+        
       );
     }
 }
