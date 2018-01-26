@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {LayoutAnimation, Text, TouchableWithoutFeedback, TouchableOpacity, View, Image} from 'react-native';
 import {connect} from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import CardSection from './CardSection';
 import Button from './Button';
 import Profile from './Profile';
@@ -67,13 +68,13 @@ class ListItem extends Component {
                                 marginLeft: 80,
                                 backgroundColor: '#FFFFFF'
                             }}
-                            whenPressed={() => this.setState({showModal: !this.state.showModal})}
+                            whenPressed={() => Actions.chat({ p: title })}
                         >
                             聊天
                         </Button>
                     </CardSection>
                     {this.renderDescription()}
-                    <Profile visible={this.state.showModal} Accept={this.onAccept.bind(this)}>
+                    <Profile visible={this.state.showModal} Accept={this.onAccept.bind(this)} library={this.props.library}>
                         防尬聊话题
                     </Profile>
                 </View>

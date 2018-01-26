@@ -26,8 +26,8 @@ const Profile = (props) => {
                     <TouchableWithoutFeedback>
                         <View>
                             <CardSection style={cardSectionStyle2}>
-                                <Image source={require('../../../assets/images/qiwenfei.jpg')} style={imageStyle}/>
-                                <Text style={textStyle2}>戚文飞</Text>
+                                <Image source={{uri: props.library.thumbnail}} style={imageStyle}/>
+                                <Text style={textStyle2}>{props.library.title}</Text>
                                 <View style={{flexDirection: 'row'}}>
                                     <Image source={require('../../../assets/images/timg.jpeg')} style={imageStyle2}/>
                                     <Text style={textStyle}>22</Text>
