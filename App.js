@@ -35,13 +35,13 @@ export default class App extends Component {
     render() {
 
         return (
-
+        <Provider store={createStore(reducers)}>
             <View style={styles.container}>
                 <View style={styles.status_bar}/>
                 <AppContent/>
 
             </View>
-
+            </Provider>
 
         );
     }

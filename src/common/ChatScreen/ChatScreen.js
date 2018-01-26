@@ -13,11 +13,10 @@ export default class ChatScreen extends Component {
 
     render() {
       return (
-        <Provider store={createStore(reducers)}>
+
         <View style={{ flex: 1 }}>
         <Router />
         </View>
-        </Provider>
       );
     }
 }
