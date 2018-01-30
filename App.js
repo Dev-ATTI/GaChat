@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
@@ -8,11 +8,18 @@ import {
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import {StackNavigator} from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 import LoginScreen from './src/common/LoginScreen/LoginScreen.js';
 import MainScreen from './src/common/MainScreen/MainScreen.js';
 import Router from './src/common/ChatScreen/Router';
+import HomeScreen from './src/common/HomeScreen/HomeScreen';
+import ChatScreen from './src/common/ChatScreen/ChatScreen';
+import MomentScreen from './src/common/MomentScreen/MomentScreen';
+import ProfileScreen from './src/common/ProfileScreen/ProfileScreen';
+import WelcomeScreen from './src/common/WelcomeScreen/WelcomeScreen';
+import MatchScreen from './src/common/MatchScreen/MatchScreen';
 import reducers from './src/reducers';
+
 const AppContent = StackNavigator({
     LoginScreen: {
         screen: LoginScreen,
@@ -32,16 +39,31 @@ const AppContent = StackNavigator({
 });
 
 export default class App extends Component {
-    render() {
 
+    render() {
+      const MainNavigator = TabNavigator({
+        welcome: { screen: WelcomeScreen },
+        login: { screen: LoginScreen },
+        main: { screen: TabNavigator({
+          home: { screen: HomeScreen },
+          chat: { screen: StackNavigator({
+            match: { screen: MatchScreen },
+            chat: { screen: ChatScreen }
+          })
+
+           },
+          moment: { screen: MomentScreen },
+          profile: { screen: ProfileScreen }
+        })
+       }
+      });
         return (
         <Provider store={createStore(reducers)}>
             <View style={styles.container}>
-                <View style={styles.status_bar}/>
-                <AppContent/>
-
+            <MainNavigator />
             </View>
             </Provider>
+
 
         );
     }
