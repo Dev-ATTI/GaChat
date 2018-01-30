@@ -41,7 +41,7 @@ export default class LoginScreen extends Component {
         Keyboard.dismiss();
 
         // go to home screen
-        this.props.navigation.navigate('MainScreen');
+        this.props.navigation.navigate('main');
 
         // const HOSTANDPORT = 'http://192.168.191.1:8081';
         // const REQUEST_URL = HOSTANDPORT + '/login?userName='
