@@ -29,6 +29,9 @@ class Chat extends Component {
   componentWillUpdate() {
     LayoutAnimation.spring();
   }
+  componentWillUnmount() {
+    this.ws.send('unmounting...');
+  }
   onMessageReceive(msg) {
           this.state.result.push({ content: msg.data, user: false });
           this.createDataSource(this.state);
