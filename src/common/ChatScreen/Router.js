@@ -8,11 +8,11 @@ const RouterComponent = () => {
     return (
         <Router>
             <Scene key="root">
-                <Scene key="list" component={LibraryList} title="匹配列表" />
-                <Scene key="chat" component={Chat} title='聊天列表' />
+                <Scene key="list" component={LibraryList} title="匹配列表" hideNavBar />
+                <Scene key="chat" component={Chat} title='聊天列表' hideNavBar />
                 <Scene
                   key="sc"
-                  hideNavBar={false}
+                  hideNavBar
                   component={ChatScene}
                   title=''
                 />

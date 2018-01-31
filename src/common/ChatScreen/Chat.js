@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Image, LayoutAnimation, ListView } from 'react-native';
+import { Text, Image, LayoutAnimation, ListView, View, ActivityIndicator, Platform } from 'react-native';
 import { Actions, Scene } from 'react-native-router-flux';
 import ChatScene from './ChatScene.js';
 import Header from './Header.js';
@@ -10,8 +10,20 @@ import Card from './Card';
 import MessageItem from './MessageItem';
 
 class Chat extends Component {
+  static navigationOptions = props => {
+    const { navigation } = props;
+    const { navigate, state } = navigation;
+    return {
+      headerTitle: state.params.name,
+      
+      headerStyle: {
+        marginTop: Platform.OS === 'android' ? 24 : 0
+      }
+
+    };
+  }
   /* eslint-disable global-require */
-  state={ text: 'text1', istyle: styles.image1, cstyle: styles.c1s1, msg: '', result: [] };
+  state={ text: 'text1', istyle: styles.image1, cstyle: styles.c1s1, msg: '', result: [], loaded: true };
   componentWillMount() {
     const { result } = this.state;
     this.ws = new WebSocket('ws://192.168.1.107:3001');
@@ -21,7 +33,11 @@ class Chat extends Component {
     this.state.result.push({ content: 'Hello', user: true });
     this.state.result.push({ content: 'Hi', user: false });
     this.createDataSource(this.state);
+    console.log(this.props.navigation.state.params.name);
   //  this.dataSource = ds.cloneWithRows(this.state.result);
+  }
+  componentDidMount() {
+//    this.setState({ loaded: true });
   }
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps.state);

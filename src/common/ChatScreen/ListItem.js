@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {LayoutAnimation, Text, TouchableWithoutFeedback, TouchableOpacity, View, Image} from 'react-native';
+import {LayoutAnimation, Text, TouchableWithoutFeedback, TouchableOpacity, View, Image, ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import CardSection from './CardSection';
@@ -10,9 +10,14 @@ import * as actions from '../../action/index.js';
 
 /* eslint-disable global-require */
 class ListItem extends Component {
-    state = {showModal: false, show: false}
+
+    state = { showModal: false, show: false, loaded: false }
 
     componentWillMount() {
+
+    }
+    componentDidMount() {
+      this.setState({ loaded: true });
     }
 
     componentWillUpdate() {
@@ -39,8 +44,15 @@ class ListItem extends Component {
     }
 
     render() {
-        const {id, title, thumbnail} = this.props.library;
-        const {textStyle, image, image2, image3} = styles;
+        const  {id, title, thumbnail } = this.props.library;
+        const { textStyle, image, image2, image3 } = styles;
+        if (!this.state.loaded) {
+          return(
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+            <ActivityIndicator size="large" />
+            </View>
+          );
+        }
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
@@ -53,7 +65,7 @@ class ListItem extends Component {
                         <TouchableOpacity onPress={() => this.setState({showModal: !this.state.showModal})}>
 
                             <Image
-                                source={{uri: thumbnail}} style={image}
+                                source={{uri: thumbnail}} style={image} cacheEnabled={true}
                             />
 
                         </TouchableOpacity>
@@ -68,7 +80,7 @@ class ListItem extends Component {
                                 marginLeft: 80,
                                 backgroundColor: '#FFFFFF'
                             }}
-                            whenPressed={() => Actions.chat({ p: title })}
+                            whenPressed={this.props.connectChat}
                         >
                             聊天
                         </Button>

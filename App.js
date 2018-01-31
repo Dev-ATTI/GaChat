@@ -14,10 +14,14 @@ import MainScreen from './src/common/MainScreen/MainScreen.js';
 import Router from './src/common/ChatScreen/Router';
 import HomeScreen from './src/common/HomeScreen/HomeScreen';
 import ChatScreen from './src/common/ChatScreen/ChatScreen';
+import Chat from './src/common/ChatScreen/Chat';
 import MomentScreen from './src/common/MomentScreen/MomentScreen';
 import ProfileScreen from './src/common/ProfileScreen/ProfileScreen';
 import WelcomeScreen from './src/common/WelcomeScreen/WelcomeScreen';
 import MatchScreen from './src/common/MatchScreen/MatchScreen';
+import DeckScreen from './src/common/DeckScreen/DeckScreen';
+import LibraryList from './src/common/ChatScreen/LibraryList';
+import ListItem from './src/common/ChatScreen/ListItem';
 import reducers from './src/reducers';
 
 const AppContent = StackNavigator({
@@ -48,7 +52,10 @@ export default class App extends Component {
           home: { screen: HomeScreen },
           chat: { screen: StackNavigator({
             match: { screen: MatchScreen },
-            chat: { screen: ChatScreen }
+            list: { screen: LibraryList },
+            chat: { screen: Chat },
+            deck: { screen: DeckScreen },
+            item: { screen: ListItem }
           })
 
            },
@@ -56,7 +63,13 @@ export default class App extends Component {
           profile: { screen: ProfileScreen }
         })
        }
-      });
+     }, {
+       navigationOptions: {
+    //     tabBar: { visible: false }
+        tabBarVisible: false
+       },
+       lazyLoad: true
+     });
         return (
         <Provider store={createStore(reducers)}>
             <View style={styles.container}>
